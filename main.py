@@ -1,13 +1,30 @@
 import discord
 import os
+import random
 import requests
 import json
-import random
+import pytz
+import datetime as dt
 from keep_alive import keep_alive
-import spotify
 
 client = discord.Client()
 
+now = dt.datetime.now()
+
+Manila =pytz.timezone('Asia/Manila')
+
+localtz=pytz.timezone('Europe/London')
+
+now=localtz.localize(now)
+
+now_today=now.astimezone(Manila)
+print(now_today)
+
+petsa = now_today.strftime('%m/%d/%Y')
+
+oras = now_today.strftime("%H:%M:%S" + ' (+01:00:00)')
+
+#These are all the listed words
 happy_words = ["lipaya", "happy", "Happy", "Lipay", "Lipaya", "lipay", "smiling", "smiley","Smiling", "Smiley", "I feel better"]
 
 starter_supports = ["good for you", "That is good to hear", "keep it up", "Sana all", "Sanaol"]
@@ -40,21 +57,21 @@ Cant_sleep = ["I cannot sleep", "cant sleep", "i cannot sleep", "Cant sleep", "d
 
 Sleep_now = ["Please go to bed and Relax", "Sleep early to get more ideas tomorrow", "Please go to bed and clear your mind", "If you won't sleep. you will have a bad memory"]
 
+gabii = ["maayong gabii", "Maayong gabii", "Mayng gabii", "mayng gabii", "Good evening","good evening", "Goodevening", "goodevening","Konbanwa"]
+
+tubag_sa_gabii = ["Good evening!", "What a pleasant night it is.", "Hello Good evening"]
+
 def get_quote():
   response = requests.get("https://zenquotes.io/api/random")
   json_data = json.loads(response.text)
   quote = json_data[0]['q'] + " -" + json_data[0]['a']
   return(quote)
 
-  @client.event
-  async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
-
 @client.event
 async def on_message(message):
   if message.author == client.user:
     return
-  
+
   username = str(message.author).split('#')[0]
   user_message = str(message.content)
   channel = str(message.channel.name)
@@ -64,10 +81,20 @@ async def on_message(message):
     if user_message.lower() == 'hi':
       await message.channel.send(f'Hello {username}! It is nice to see you')
       return
+
+#What to say to the bot or ask
+    if user_message.lower() == 'what day is it?':
+      await message.channel.send(f'today is {petsa} do not forget the date {username}!')
+
+    if user_message.lower() == 'what time is it?':
+      await message.channel.send(f'it is {oras} right now {username}!')
   
     if user_message.lower() =='bye':
       await message.channel.send(f"Bye! {username}! See ya!")
       return
+    
+    elif user_message.lower() == 'goodbye':
+      await message.channel.send(f'Bye! {username}! See ya!')
 
     if user_message.lower() == 'i love you zero two':
       await message.channel.send(f'I love you too {username}!')
@@ -92,6 +119,9 @@ async def on_message(message):
 
     if user_message.lower() == 'who are you?':
       await message.channel.send(f'I am the bot created by Gio Daguil. Nice to meet you!')
+
+    if user_message.lower() =='will you encourage me?':
+      await message.channel.send(f'Sure!, Just type "!encourage"')
 
     if user_message.lower() == 'wow':
       await message.channel.send(f'Right? It is amazing!')
@@ -123,21 +153,34 @@ async def on_message(message):
     if user_message.lower() == 'am i right zero two?':
       await message.channel.send(f'Yes! You are right')
 
+    if user_message.lower() == "who is gio's girlfriend?":
+      await message.channel.send(f'His girlfriend is Ver Briz Barontoy')
+
     if user_message.lower() == 'im cute':
       await message.channel.send(f'Me too i am also cute!')
 
     if user_message.lower() == 'im pretty':
       await message.channel.send(f'I am pretty too!')
 
+    if user_message.lower() == 'what can you do?':
+      await message.channel.send(f'I can answer all your stupid questions {username}!')
+
+    if user_message.lower() == 'nice one zero two':
+      await message.channel.send(f'Thank you!')
+
     if user_message.lower() == 'im hungry':
       await message.channel.send(f'I will lend you some snacks.')
+
+    if user_message.lower() == 'evening zero two':
+      await message.channel.send(f'Good evening {username}, How was your day?, Are you tired?')
 
   msg = message.content
 
   if msg.startswith('!encourage'):
     quote = get_quote()
     await message.channel.send(quote)
-  
+
+#This where I put the listed word for the bot to reply word to  search every word by word it sees.  
   if any(word in msg for word in happy_words):
     await message.channel.send(random.choice(starter_supports))
 
@@ -162,6 +205,9 @@ async def on_message(message):
   if any(word in msg for word in Cant_sleep):
     await message.channel.send(random.choice(Sleep_now))
 
+  if any(word in msg for word in gabii):
+    await message.channel.send(random.choice(tubag_sa_gabii))
 
+#This keep alive something is what makes this bot work for a long time  
 keep_alive()
-client.run(os.environ['Ahoy'])
+client.run(os.environ['pray'])
