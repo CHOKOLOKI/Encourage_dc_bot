@@ -62,7 +62,7 @@ gabii = ["maayong gabii", "Maayong gabii", "Mayng gabii", "mayng gabii", "Good e
 
 tubag_sa_gabii = ["Good evening!", "What a pleasant night it is.", "Hello Good evening"]
 
-Ver = ['ver briz', 'briz', 'ver briz barontoy', 'ver briz b barontoy', 'ver briz b. barontoy'] 
+Ver = ['ver briz', 'briz', 'Ver', 'Ver Briz', 'Ver briz', 'ver briz barontoy', 'ver briz b barontoy', 'ver briz b. barontoy']
 
 Briz = ["Ahh Ver Briz, That's the girl Gio loves", "Ver Briz? That's Gio's lover Right?"]
 
