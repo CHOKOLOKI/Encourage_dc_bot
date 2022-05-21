@@ -7,6 +7,7 @@ import pytz
 import datetime as dt
 from keep_alive import keep_alive
 
+#Variables section
 client = discord.Client()
 
 now = dt.datetime.now()
@@ -60,6 +61,10 @@ Sleep_now = ["Please go to bed and Relax", "Sleep early to get more ideas tomorr
 gabii = ["maayong gabii", "Maayong gabii", "Mayng gabii", "mayng gabii", "Good evening","good evening", "Goodevening", "goodevening","Konbanwa"]
 
 tubag_sa_gabii = ["Good evening!", "What a pleasant night it is.", "Hello Good evening"]
+
+Ver = ['ver briz', 'briz', 'ver briz barontoy', 'ver briz b barontoy', 'ver briz b. barontoy'] 
+
+Briz = ["Ahh Ver Briz, That's the girl Gio loves", "Ver Briz? That's Gio's lover Right?"]
 
 def get_quote():
   response = requests.get("https://zenquotes.io/api/random")
@@ -131,6 +136,12 @@ async def on_message(message):
 
     if user_message.lower() == 'chuya':
       await message.channel.send(f'Right? It is amazing')
+
+    if user_message.lower() == 'where is gio right now?':
+      await message.channel.send(f'gio is on P. Remedio st. Banilad, Mandaue, Cebu city')
+
+    if user_message.lower() == 'Where did gio work?':
+      await message.channel.send(f'Gio is currently working on BPOSeats as QA Tester on Devs Department')
 
     if user_message.lower() == 'who made you?':
       await message.channel.send(f'I am created by Sergio M. Daguil III')
@@ -207,6 +218,9 @@ async def on_message(message):
 
   if any(word in msg for word in gabii):
     await message.channel.send(random.choice(tubag_sa_gabii))
+  
+  if any(word in msg for word in Ver):
+    await message.channel.send(random.choice(Briz))
 
 #This keep alive something is what makes this bot work for a long time  
 keep_alive()
