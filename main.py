@@ -1,5 +1,6 @@
 import discord
 import os
+from discord.ext import commands
 import random
 import requests
 import json
@@ -186,7 +187,7 @@ async def on_message(message):
       await message.channel.send(f'I am sorry I think the server is not yet updated 😅')
 
     if user_message.lower() == 'evening zero two':
-      await message.channel.send(f'Good evening {username}, How was your day?, Are you tired?')
+      await message.channel.send(f'Good evening {client.user}, How was your day?, Are you tired?')
 
   msg = message.content
 
@@ -222,8 +223,7 @@ async def on_message(message):
   if any(word in msg for word in gabii):
     await message.channel.send(random.choice(tubag_sa_gabii))
   
-  if any(word in msg for word in Ver):
-    await message.channel.send(random.choice(Briz))
+# Python discord command section
 
 #This keep alive something is what makes this bot work for a long time  
 keep_alive()
