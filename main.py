@@ -182,6 +182,9 @@ async def on_message(message):
     if user_message.lower() == 'im hungry':
       await message.channel.send(f'I will lend you some snacks.')
 
+    if user_message.lower() == 'wrong time':
+      await message.channel.send(f'I am sorry I think the server is not yet updated 😅')
+
     if user_message.lower() == 'evening zero two':
       await message.channel.send(f'Good evening {username}, How was your day?, Are you tired?')
 
