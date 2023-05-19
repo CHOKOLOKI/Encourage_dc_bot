@@ -187,7 +187,7 @@ async def on_message(message):
       await message.channel.send(f'I am sorry I think the server is not yet updated 😅')
 
     if user_message.lower() == 'evening zero two':
-      await message.channel.send(f'Good evening {client.user}, How was your day?, Are you tired?')
+      await message.channel.send(f'Good evening {message.author.mention}, How was your day?, Are you tired?')
 
   msg = message.content
 
