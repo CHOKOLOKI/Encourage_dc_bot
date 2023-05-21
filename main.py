@@ -63,10 +63,6 @@ gabii = ["maayong gabii", "Maayong gabii", "Mayng gabii", "mayng gabii", "Good e
 
 tubag_sa_gabii = ["Good evening!", "What a pleasant night it is.", "Hello Good evening"]
 
-Ver = ['ver briz', 'briz', 'Ver', 'Ver Briz', 'Ver briz', 'ver briz barontoy', 'ver briz b barontoy', 'ver briz b. barontoy']
-
-Briz = ["Ahh Ver Briz, That's the girl Gio loves", "Ver Briz? That's Gio's lover Right?"]
-
 def get_quote():
   response = requests.get("https://zenquotes.io/api/random")
   json_data = json.loads(response.text)
@@ -85,46 +81,46 @@ async def on_message(message):
 
   if message.channel.name == 'general':
     if user_message.lower() == 'hi':
-      await message.channel.send(f'Hello {username}! It is nice to see you')
+      await message.channel.send(f'Hello {message.author.mention}! It is nice to see you')
       return
 
 #What to say to the bot or ask
     if user_message.lower() == 'what day is it?':
-      await message.channel.send(f'today is {petsa} do not forget the date {username}!')
+      await message.channel.send(f'today is {petsa} do not forget the date {message.author.mention}!')
 
     if user_message.lower() == 'what time is it?':
-      await message.channel.send(f'it is {oras} right now {username}!')
+      await message.channel.send(f'it is {oras} right now {message.author.mention}!')
   
     if user_message.lower() =='bye':
-      await message.channel.send(f"Bye! {username}! See ya!")
+      await message.channel.send(f"Bye! {message.author.mention}! See ya!")
       return
     
     elif user_message.lower() == 'goodbye':
-      await message.channel.send(f'Bye! {username}! See ya!')
+      await message.channel.send(f'Bye! {message.author.mention}! See ya!')
 
     if user_message.lower() == 'i love you zero two':
-      await message.channel.send(f'I love you too {username}!')
+      await message.channel.send(f'I love you too {message.author.mention}!')
 
     if user_message.lower() == 'i miss you zero two':
-      await message.channel.send(f'Oh how sweet! I missed you too {username}')
+      await message.channel.send(f'Oh how sweet! I missed you too {message.author.mention}')
 
     if user_message.lower() == 'i miss you':
-      await message.channel.send(f'I missed you too {username}!')
+      await message.channel.send(f'I missed you too {message.author.mention}!')
 
     if user_message.lower() == 'kamusta naman si gio?':
       await message.channel.send(f'Okay raman, malipayon gihapon')
 
     if user_message.lower() == 'hey zero two':
-      await message.channel.send(f'Oh Hello there {username}!')
+      await message.channel.send(f'Oh Hello there {message.author.mention}!')
     
     if user_message.lower() == 'i love you':
-      await message.channel.send(f'I love you too {username} <3')
+      await message.channel.send(f'I love you too {message.author.mention} <3')
 
     if user_message.lower() == 'unsa ni ging?':
-      await message.channel.send(f'I am the bot created by Gio Daguil. Nice to meet you!')
+      await message.channel.send(f'I am the bot created by Sergio Daguil. Nice to meet you!')
 
     if user_message.lower() == 'who are you?':
-      await message.channel.send(f'I am the bot created by Gio Daguil. Nice to meet you!')
+      await message.channel.send(f'I am the bot created by Sergio Daguil. Nice to meet you!')
 
     if user_message.lower() =='will you encourage me?':
       await message.channel.send(f'Sure!, Just type "!encourage"')
@@ -141,8 +137,8 @@ async def on_message(message):
     if user_message.lower() == 'where is gio right now?':
       await message.channel.send(f'gio is on P. Remedio st. Banilad, Mandaue, Cebu city')
 
-    if user_message.lower() == 'Where did gio work?':
-      await message.channel.send(f'Gio is currently working on BPOSeats as QA Tester on Devs Department')
+    if user_message.lower() == "What is gio's work?":
+      await message.channel.send(f'Gio is currently working on BPOSeats as QA Tester')
 
     if user_message.lower() == 'who made you?':
       await message.channel.send(f'I am created by Sergio M. Daguil III')
@@ -151,10 +147,10 @@ async def on_message(message):
       await message.channel.send(f'My creator is the one and only Sergio Mendola Daguil III')
 
     if user_message.lower() == 'who is ugly here?':
-      await message.channel.send(f'No other than {username}. It is obvious')
+      await message.channel.send(f'No other than {message.author.mention}. It is obvious')
 
     if user_message.lower() == 'kinsay maot diri?':
-      await message.channel.send(f'No other than {username}. It is obvious')
+      await message.channel.send(f'No other than {message.author.mention}. It is obvious')
 
     if user_message.lower() == 'how are you?':
       await message.channel.send(f'I am fine. Thank you!')
@@ -165,9 +161,6 @@ async def on_message(message):
     if user_message.lower() == 'am i right zero two?':
       await message.channel.send(f'Yes! You are right')
 
-    if user_message.lower() == "who is gio's girlfriend?":
-      await message.channel.send(f'His girlfriend is Ver Briz Barontoy')
-
     if user_message.lower() == 'im cute':
       await message.channel.send(f'Me too i am also cute!')
 
@@ -175,7 +168,7 @@ async def on_message(message):
       await message.channel.send(f'I am pretty too!')
 
     if user_message.lower() == 'what can you do?':
-      await message.channel.send(f'I can answer all your stupid questions {username}!')
+      await message.channel.send(f'I can answer all of your stupid questions {message.author.mention}!')
 
     if user_message.lower() == 'nice one zero two':
       await message.channel.send(f'Thank you!')
@@ -191,6 +184,7 @@ async def on_message(message):
 
   msg = message.content
 
+# API for quote
   if msg.startswith('!encourage'):
     quote = get_quote()
     await message.channel.send(quote)
@@ -224,6 +218,7 @@ async def on_message(message):
     await message.channel.send(random.choice(tubag_sa_gabii))
   
 # Python discord command section
+
 
 #This keep alive something is what makes this bot work for a long time  
 keep_alive()
